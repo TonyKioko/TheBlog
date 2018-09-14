@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,TextAreaField,SelectField,SubmitField
 from wtforms.validators import Required
 
-class PitchesForm(FlaskForm):
+class PostsForm(FlaskForm):
     category = SelectField('Pitch Category',
                               choices=[('Select','Select Category'), ('Interview-Pitch', 'Interview Pitch'), ('Product-Pitch', 'Product Pitch'),
                                        ('Promotion-Pitch', 'Promotion Pitch'), ('Business-Pitch', 'Business Pitch')], validators=[Required()])

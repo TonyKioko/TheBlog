@@ -20,7 +20,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    #creating relationship between users and pitches,One User can have many pitches
+    #creating relationship between users and posts,One User can have many posts
     posts = db.relationship("Posts", backref="user", lazy="dynamic")
     #creating relationship between users and comments,One User can have many comments
     comments = db.relationship("Comments", backref="user", lazy="dynamic")
@@ -46,6 +46,7 @@ class Posts(db.Model):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer,primary_key = True)
+    title=db.Column(db.String)
     body = db.Column(db.String)
     category = db.Column(db.String(255))
     published = db.Column(db.DateTime,default=datetime.utcnow)
@@ -60,8 +61,8 @@ class Posts(db.Model):
 
     @classmethod
     def get_posts(cls,id):
-        pitches = Posts.query.filter_by(id=id).all()
-        return pitches
+        posts = Posts.query.filter_by(id=id).all()
+        return posts
 
     @classmethod
     def get_category(cls, category):

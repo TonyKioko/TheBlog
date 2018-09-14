@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for, abort
 from . import main
 from flask_login import login_required,current_user
-from .forms import PitchesForm,CommentsForm,UpdateProfile
+from .forms import PostsForm,CommentsForm,UpdateProfile
 from ..models import Posts,Comments,User
 from .. import photos, db
 from datetime import datetime
@@ -48,3 +48,22 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form =form)
+
+@main.route('/post/new',methods = ['GET','POST'])
+@login_required
+def new_pitch():
+    '''
+    View pitch function that returns the pitch page and data
+    '''
+    form = PostsForm()
+
+    if form.validate_on_submit() and form.category.data != 'Select':
+        body = form.body.data
+        category = form.category.data
+
+        new_post = Posts(body=body,category=category,user_id=current_user.id)
+        new_post.save_post()
+
+        return redirect(url_for('main.home'))
+
+    return render_template('new_post.html', pitch_form = form)
