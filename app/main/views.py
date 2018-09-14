@@ -15,12 +15,13 @@ def home():
     '''
     # message = "Hello World"
     title="Pitches"
+    posts = Posts.query.order_by('-id').all()
    
     
 
     message= 'Welcome to the Blog'
     # return "Hello, World"
-    return render_template('home.html',title=title,message=message)
+    return render_template('home.html',title=title,message=message,posts=posts)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -60,10 +61,14 @@ def new_pitch():
     if form.validate_on_submit() and form.category.data != 'Select':
         body = form.body.data
         category = form.category.data
+        title = form.title.data
 
-        new_post = Posts(body=body,category=category,user_id=current_user.id)
+        new_post = Posts(body=body,category=category,title=title,user_id=current_user.id)
         new_post.save_post()
 
         return redirect(url_for('main.home'))
 
     return render_template('new_post.html', pitch_form = form)
+
+# @main.route('/blog')
+

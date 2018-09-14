@@ -6,7 +6,8 @@ class PostsForm(FlaskForm):
     category = SelectField('Pitch Category',
                               choices=[('Select','Select Category'), ('Interview-Pitch', 'Interview Pitch'), ('Product-Pitch', 'Product Pitch'),
                                        ('Promotion-Pitch', 'Promotion Pitch'), ('Business-Pitch', 'Business Pitch')], validators=[Required()])
-    body = TextAreaField('Pitch Now',validators = [Required()])
+    title = StringField('Blog Title',validators = [Required()])
+    body = TextAreaField('Blog Content',validators = [Required()])
     submit = SubmitField('Submit')
     
 class CommentsForm(FlaskForm):
