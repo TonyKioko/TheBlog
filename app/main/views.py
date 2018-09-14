@@ -70,5 +70,23 @@ def new_pitch():
 
     return render_template('new_post.html', pitch_form = form)
 
-# @main.route('/blog')
+@main.route('/pitch/<int:id>',methods = ['GET', 'POST'])
+@login_required
+def comment(id):
+
+    comments_form = CommentsForm()
+    # pitch = Pitches.query.get(pitch_id)
+    posts = Posts.query.filter_by(id=id).first()
+    print(posts)
+    if comments_form.validate_on_submit():
+        comment = comments_form.comment.data
+
+        new_comment = Comments(the_comment=comment,posts_id=posts.id, user_id = current_user.id)
+        db.session.add(new_comment)
+        db.session.commit()
+
+    comments_list = Comments.query.filter_by(posts_id=id).order_by("-id")
+    print(comments_list)
+
+    return render_template('comments.html', comments_form=comments_form,comments_list=comments_list)
 
