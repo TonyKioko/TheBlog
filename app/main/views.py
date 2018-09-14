@@ -7,6 +7,7 @@ from .. import photos, db
 from datetime import datetime
 
 @main.route('/')
+@login_required
 def home():
 
     '''
