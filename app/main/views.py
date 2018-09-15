@@ -105,6 +105,11 @@ def delete_post(id):
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
 
+@main.route("/pitch/<int:id>/full")
+def post(id):
+    post = Posts.query.get_or_404(id)
+    return render_template('post.html', title=post.title, post=post)
+
 
 
 
