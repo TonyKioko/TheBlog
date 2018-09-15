@@ -104,6 +104,27 @@ class Comments(db.Model):
         comments = Comments.query.filter_by(post_id=id).all()
         return comments
 
+class Subscribe(db.Model):
+
+    __tablename__='subscribers'
+    
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(255))
+    email=db.Column(db.String(255))
+
+    def __init__(self,name,email):
+        self.name = name
+        self.email = email
+
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_subscribers(cls):
+        subscribers=Subscribe.query.all()
+        return subscribers
+
 
 
 
