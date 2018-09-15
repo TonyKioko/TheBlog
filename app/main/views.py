@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for, abort
+from flask import render_template,request,redirect,url_for, abort, flash
 from . import main
 from flask_login import login_required,current_user
 from .forms import PostsForm,CommentsForm,UpdateProfile
@@ -52,7 +52,7 @@ def update_profile(uname):
 
 @main.route('/post/new',methods = ['GET','POST'])
 @login_required
-def new_pitch():
+def new_post():
     '''
     View pitch function that returns the pitch page and data
     '''
@@ -65,10 +65,38 @@ def new_pitch():
 
         new_post = Posts(body=body,category=category,title=title,user_id=current_user.id)
         new_post.save_post()
-
+        flash('Your post has been created!', 'success')
         return redirect(url_for('main.home'))
 
     return render_template('new_post.html', pitch_form = form)
+@main.route("/pitch/<int:id>/update", methods=['GET', 'POST'])
+@login_required
+def update_post(id):
+    post = Posts.query.get_or_404(id)
+    if post.user != current_user:
+        abort(403)
+    form = PostsForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.body = form.body.data
+        db.session.commit()
+        # flash('Your post has been updated!', 'success')
+        return redirect(url_for('main.home',id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.body.data = post.body
+    return render_template('new_post.html', title='Update Post',
+                           pitch_form=form)
+
+
+
+
+
+
+
+
+
+
 
 @main.route('/pitch/<int:id>',methods = ['GET', 'POST'])
 @login_required

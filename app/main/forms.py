@@ -8,7 +8,7 @@ class PostsForm(FlaskForm):
                                        ('Promotion-Pitch', 'Promotion Pitch'), ('Business-Pitch', 'Business Pitch')], validators=[Required()])
     title = StringField('Blog Title',validators = [Required()])
     body = TextAreaField('Blog Content',validators = [Required()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Post')
     
 class CommentsForm(FlaskForm):
     comment = TextAreaField('Comment on pitch',validators = [Required()])
