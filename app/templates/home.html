@@ -10,25 +10,38 @@
 
 {% for post in posts%}
 
-<p><img src="{{ post.user.avatar(36) }}"</p>
-<!-- <h3>{{post.title}}</h3> -->
-<h2><a class="article-title" href="/pitch/{{post.id}}/full">{{ post.title }}</a></h2>
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ post.user.avatar(36) }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.user }}</a>
+        <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
+      </div>
+      <h2><a class="article-title" href="/pitch/{{post.id}}/full">{{ post.title }}</a></h2>
+      
+      <p class="article-content">{{ post.body | truncate(180) }} <a href="/pitch/{{post.id}}/full"> ... Read More</a> </p>
+    </div>
+  </article>
 
-{% if post.user == current_user %}
+<!-- <p><img src="{{ post.user.avatar(36) }}"</p> -->
+<!-- <h3>{{post.title}}</h3> -->
+<!-- <h2><a class="article-title" href="/pitch/{{post.id}}/full">{{ post.title }}</a></h2> -->
+
+<!-- {% if post.user == current_user %}
 
 
           <div>
             <a class="btn btn-info btn-sm mt-1 mb-1" href="/pitch/{{post.id}}/update">Update</a>
-            <!-- <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button> -->
+          
             <form action="/pitch/{{post.id}}/delete" method="POST">
                 <input class="btn btn-danger" type="submit" value="Delete">
 
           </div>
-          {% endif %}
+          {% endif %} -->
 
-<h3>{{post.body}}</h3>
-<h4>Posted: {{moment(post.published).fromNow()}}</h4>
-<a href="/pitch/{{post.id}}" style=""><h4>Add Comment | View Comments</h4></a>
+<!-- <h3>{{post.body}}</h3> -->
+<!-- <h4>Posted: {{moment(post.published).fromNow()}}</h4> -->
+<!-- <a href="/pitch/{{post.id}}" style=""><h4>Add Comment | View Comments</h4></a> -->
 
 
 {% endfor  %}
