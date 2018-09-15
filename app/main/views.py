@@ -88,6 +88,17 @@ def update_post(id):
     return render_template('new_post.html', title='Update Post',
                            pitch_form=form)
 
+@main.route("/pitch/<int:id>/delete", methods=['POST'])
+@login_required
+def delete_post(id):
+    post = Posts.query.get_or_404(id)
+    if post.user != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    # flash('Your post has been deleted!', 'success')
+    return redirect(url_for('main.home'))
+
 
 
 
