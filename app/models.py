@@ -19,6 +19,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
     bio = db.Column(db.String(255))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
     #creating relationship between users and posts,One User can have many posts

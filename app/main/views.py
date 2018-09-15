@@ -50,6 +50,12 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
+@main.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
+
 @main.route('/post/new',methods = ['GET','POST'])
 @login_required
 def new_post():
