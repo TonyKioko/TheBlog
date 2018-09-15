@@ -3,9 +3,11 @@ from wtforms import StringField,TextAreaField,SelectField,SubmitField
 from wtforms.validators import Required
 
 class PostsForm(FlaskForm):
-    category = SelectField('Pitch Category',
-                              choices=[('Select','Select Category'), ('Interview-Pitch', 'Interview Pitch'), ('Product-Pitch', 'Product Pitch'),
-                                       ('Promotion-Pitch', 'Promotion Pitch'), ('Business-Pitch', 'Business Pitch')], validators=[Required()])
+    category = SelectField('Blog Category',
+                              choices=[('Select','Select Category'), ('Celebrity Gossip', 'Celebrity Gossip'), ('Fashion', 'Fashion'),
+                                       ('Music', 'Music'), ('Food', 'Food'),('Sports', 'Sports'),
+                                       ('Technology', 'Technology'),('Travel', 'Travel'),('Nature', 'Nature')                                       
+                                       ], validators=[Required()])
     title = StringField('Blog Title',validators = [Required()])
     body = TextAreaField('Blog Content',validators = [Required()])
     submit = SubmitField('Post')
