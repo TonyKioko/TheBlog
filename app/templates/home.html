@@ -9,6 +9,7 @@
 {{message}}
 
 {% for post in posts%}
+<p><img src="{{ post.user.avatar(36) }}"</p>
 <h3>{{post.title}}</h3>
 {% if post.user == current_user %}
 

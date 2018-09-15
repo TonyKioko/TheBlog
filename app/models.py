@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
+from hashlib import md5
 
 
 @login_manager.user_loader
@@ -24,6 +25,11 @@ class User(UserMixin,db.Model):
     posts = db.relationship("Posts", backref="user", lazy="dynamic")
     #creating relationship between users and comments,One User can have many comments
     comments = db.relationship("Comments", backref="user", lazy="dynamic")
+
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
     @property
     def password(self):
