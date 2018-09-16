@@ -1,8 +1,8 @@
 # Blog
-#### One MInute Pitch app created as an Independent Project on 07/09/2018
+#### Blog Application created on 14/09/2018
 #### Author: **Tony Kioko**
 ## Description
-The Blog is a web application where you can create and share your opinions and other users can read and comment on them.
+The Blog is a web application where you can create and share your opinions and other users can read and comment on them. The user can also subscribe to the app to be informed of a new post via their email.
 
 ## User Stories
 * As a user, I would like to view the blog posts submitted
@@ -29,7 +29,7 @@ The Blog is a web application where you can create and share your opinions and o
 
 
 ## Setup/Installation Requirements.
-* Git clone https://github.com/TonyKioko/Pitches or download and unzip the repository from github.
+* Git clone https://github.com/TonyKioko/TheBlog or download and unzip the repository from github.
 * Have python3.6 installed in your machine
 * Navigate into cloned file using the terminal.
 * Run python3.6 -m venv --without-pip virtual to create a virtual environment.
@@ -37,12 +37,13 @@ The Blog is a web application where you can create and share your opinions and o
 * To run the app, type ./start.sh from your virtual environment on the terminal. In your favorite browser, open the link provided by the local host.
 
 ### Live Link ###
-https://minpitch.herokuapp.com/
+coming soon
 
 ## Technologies used ##
 
 * Python 3.6
 * Flask
+* PostgreSQL - Database
 * Bootstrap
 
 ## Test Driven Development
@@ -52,10 +53,6 @@ https://minpitch.herokuapp.com/
 ## Known Bugs 
 There are no known bugs.
 
-<!-- ## Future additional features to be considered
-
-* Store user credentials in a database.
-* Use encryption algorithims to hash saved passwords. -->
  
 ### License
 This project is licensed under the MIT Open Source license,Copyright (c) 2018 [Tony Kioko](https://github.com/tonykioko/)
