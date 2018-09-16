@@ -18,7 +18,7 @@
               <img class="rounded-circle article-img" src="{{ post.user.avatar(80) }}">
           </td>
           <td style="padding-left:10px;">
-              <a class="mr-2" href="#">{{ post.user }}</a> <br>
+              <a class="mr-2" href="#">Writer : <b><em>{{ post.user.username }}</em></b></a> <br>
               <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
           </td>
         </tr>
