@@ -21,7 +21,7 @@ def home():
 
     message= 'Welcome to the Blog'
     # return "Hello, World"
-    return render_template('home.html',title=title,message=message,posts=posts)
+    return render_template('home.html',title=title,message=message,posts=posts,user=current_user)
 
 @main.route('/user/<uname>')
 def profile(uname):
