@@ -7,7 +7,7 @@
                 <img class="rounded-circle article-img" src="{{ post.user.avatar(60) }}">
                 <div class="media-body">
                   <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ post.user }}</a>
+                    <a class="mr-2" href="#">Writer : {{ post.user }}</a>
                     <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
                     {% if post.user == current_user %}
                       <div>
@@ -25,7 +25,7 @@
                       </div>
                     {% endif %}
                   </div>
-                  <h2 class="article-title">{{ post.title }}</h2>
+                  <h2 class="article-title text-center">{{ post.title }}</h2>
                   <p class="article-content">{{ post.body }}</p>
                   <div>
                         <a href="/pitch/{{post.id}}" style=""><h4>Add Comment | View Comments</h4></a>
