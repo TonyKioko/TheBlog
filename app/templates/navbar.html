@@ -31,13 +31,13 @@
         <br>
 
     </div> 
-    <main role="main" class="container">
+    <main role="main" class="container text-center" style="margin-left:400px;">
             <div class="row">
               <div class="col-md-8">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                   {% if messages %}
                     {% for category, message in messages %}
-                      <div class="alert alert-{{ category }}">
+                      <div class="alert alert-info">
                         {{ message }}
                       </div>
                     {% endfor %}

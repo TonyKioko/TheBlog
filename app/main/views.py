@@ -14,7 +14,7 @@ def home():
     View root page function that returns the general news sources by category
     '''
     # message = "Hello World"
-    title="Pitches"
+    title="Terabyte"
     posts = Posts.query.order_by('-id').all()
    
     
@@ -103,6 +103,17 @@ def delete_post(id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
+    return redirect(url_for('main.home'))
+
+
+@main.route("/pitch/comment/<int:id>/delete", methods=['POST'])
+@login_required
+def delete_comment(id):
+    comment = Comments.query.get_or_404(id)
+
+    db.session.delete(comment)
+    db.session.commit()
+    flash('Comment has been deleted!', 'success')
     return redirect(url_for('main.home'))
 
 @main.route("/pitch/<int:id>/full")

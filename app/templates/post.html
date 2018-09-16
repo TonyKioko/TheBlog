@@ -7,7 +7,7 @@
                 <img class="rounded-circle article-img" src="{{ post.user.avatar(60) }}">
                 <div class="media-body">
                   <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ post.user }}</a>
+                    <a class="mr-2" href="#">Writer : <b><em>{{ post.user.username }}</em></b></a>
                     <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
                     {% if post.user == current_user %}
                       <div>
