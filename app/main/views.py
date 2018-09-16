@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for, abort, flash
 from . import main
 from flask_login import login_required,current_user
-from .forms import PostsForm,CommentsForm,UpdateProfile
-from ..models import Posts,Comments,User
+from .forms import PostsForm,CommentsForm,UpdateProfile,SubscribeForm
+from ..models import Posts,Comments,User,Subscribe
 from .. import photos, db
 from datetime import datetime
 
@@ -111,15 +111,6 @@ def post(id):
     return render_template('post.html', title=post.title, post=post)
 
 
-
-
-
-
-
-
-
-
-
 @main.route('/pitch/<int:id>',methods = ['GET', 'POST'])
 @login_required
 def comment(id):
@@ -139,4 +130,17 @@ def comment(id):
     print(comments_list)
 
     return render_template('comments.html', comments_form=comments_form,comments_list=comments_list)
+
+@main.route('/subscribe',methods=["GET","POST"])
+def subscribe():
+    form=SubscribeForm()
+
+    if form.validate_on_submit():
+        subscriber = Subscribe(name=form.name.data,email=form.email.data)
+        db.session.add(subscriber)
+        db.session.commit()
+        flash('You have sucessfully subscribed to get notifications.')
+        return redirect(url_for('main.home'))
+        title = 'Subscribe'
+    return render_template('subscribe.html',subscribe_form=form)
 
