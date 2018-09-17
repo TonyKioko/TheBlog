@@ -4,9 +4,11 @@ class Config:
     '''
     General configuration parent class
     '''
+    
+    # SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://tony:1234@localhost/theblog'
+
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://tony:1234@localhost/theblog'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # UPLOADED_PHOTOS_DEST = 'app/static/photos'
     # email configurations
@@ -15,7 +17,7 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    SUBJECT_PREFIX = 'TheBlog'
+    SUBJECT_PREFIX = 'Terabyte'
     SENDER_EMAIL = 'tonykm101@gmail.com'
     # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
@@ -31,14 +33,15 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("HEROKU_POSTGRESQL_YELLOW_URL")
+    # pass
+    
 
 class TestConfig(Config):
 
    
     pass
-    # SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://tony:1234@localhost/minpitch_test'
+
 
 class DevConfig(Config):
     '''
@@ -52,7 +55,8 @@ class DevConfig(Config):
     DEBUG = True
 
 config_options = {
+    
     'development':DevConfig,
-    'production':ProdConfig,
-    'test': TestConfig
+    'production':ProdConfig
+    
 }
