@@ -1,5 +1,5 @@
 import unittest
-from app.models import User,Posts,Comments
+from app.models import User,Posts,Comments,Subscribe
 
 class UserModelTest(unittest.TestCase):
 
@@ -64,4 +64,36 @@ class TestComments(unittest.TestCase):
         self.new_comment.save_comment()
 
         self.assertTrue( len(Comments.query.all()) > 0)
+
+
+
+class TestSubscribe(unittest.TestCase):
+    '''
+    Test class to test behaviours of the Comments class
+    Args:
+        unittest.TestCase : Test case class that helps create test cases
+    '''
+
+    def setUp(self):
+        '''
+        Set up method that will run before every Test
+        '''
+        self.new_subscriber = Subscribe(name="New Subscriber",email="newsubscriber@gmail.com")
+
+    def test_instance(self):
+        '''
+        Test to check if new_comment is an instance of Comments
+        '''
+
+        self.assertTrue( isinstance( self.new_subscriber, Subscribe) )
+
+    def test_save_subscriber(self):
+        '''
+        Test case to check if comment is saved to the database
+        '''
+
+        self.new_subscriber.save_subscriber()
+
+        self.assertTrue( len(Subscribe.query.all()) > 0)
+
 
