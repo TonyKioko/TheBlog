@@ -9,7 +9,7 @@
                 <div class="media-body">
                   <div class="article-metadata">
                     <a class="mr-2" href="#">Writer : <b><em>{{ post.user.username }}</em></b></a>
-                    <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
+                    <small class="text-muted" style="font-size: 14px;"> Posted: {{moment(post.published).fromNow()}}</small>
                     {% if post.user == current_user %}
                       <div>
                           <div class="row">
@@ -32,6 +32,7 @@
                          <a href="/"><i class="fas fa-chevron-left" style="font-size:40px;margin-right:80px;"></i></i></a>
 
                       </td>
+                      <hr>
                       <td>
                         <h1 class="article-title text-center" style="margin-left:auto;">{{ post.title }}</h1>
                       </td>
