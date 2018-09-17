@@ -37,7 +37,7 @@ The Blog is a web application where you can create and share your opinions and o
 * To run the app, type ./start.sh from your virtual environment on the terminal. In your favorite browser, open the link provided by the local host.
 
 ### Live Link ###
-coming soon
+https://terabyte.herokuapp.com/
 
 ## Technologies used ##
 
